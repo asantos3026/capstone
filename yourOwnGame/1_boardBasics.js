@@ -23,32 +23,80 @@
   // We've included the underscore.js library on the page, so feel free to use it throughout this project. 
 
   // gameBoard is an array of arrays (an array that is filled with other arrays). Let's start by using each to iterate through the gameBoard array, console.logging each item inside the gameBoard array. You should see 8 arrays, each of length 8, logged to your console. Each array here represents a row. 
+  // _.each(gameBoard, function(property) {
+  //   console.log(property);
+  // });
 
   // Ok, now that we see the gameBoard array contains 8 arrays representing the 8 rows in the board, let's investigate a single row. 
-  // Let's use each again, this time invoking it with the first row in the gameBoard. Let's go through and console.log each item in that row. 
+  // Let's use each again, this time invoking it with the first row in the gameBoard. Let's go through and console.log each item in that row.
+  // _.each(gameBoard, function(property) {
+  //     console.log(property[0]);
+  // }) 
 
   // What you'll see is 8 different objects logged to your console. Click into them to explore them more. 
   // Each of these objects represents a square. We have many different pieces of information we want to store about each square: what color it is, what position it is on the board, what gamePiece is at that position, etc. An object is a perfect way to store information about all these different properties associated with that square. 
 
   // gameBoard[row][column] will get you the squareObj at that position in the gameBoard. So gameBoard[2][6] will point to the squareObj on row 3 column 7. Quick review on how this works: JS chains operators together, the results of each one being passed to the next operation. So first we're accessing the thing at index 2 in our gameBoard when we say gameBoard[2]. Then, within that thing (which is an array representing a row), we're asking for the item at the 6th index (which is going to be a squareObj). 
   // We could chain this together even more. Explain with your pair each individual operation that's going on when we say:
-  gameBoard[3][5].color = 'black';
+
+  for(var i = 0; i < gameBoard.length; i++){
+      for (var j = 0; j < gameBoard[0].length; j++){
+            console.log(gameBoard[i][j].color);
+            if(gameBoard[i][j].color === "#48B9C4"){
+                gameBoard[i][j].color = "purple";
+            }
+          }
+        } 
+    console.log(gameBoard);
+
+  // _.map(gameBoard, function(row, index, list) {
+  //   _.each(list, function(column) {
+  //     console.log(column[0]);
+  //     // if(column[index].color === "#48B9C4"){
+  //      column[0].color = "#772277";
+  //      column[1].color = "#777222";
+  //      column[2].color = "#B07336";
+  //      column[3].color = "#8df4b3";
+  //      column[4].color = "#b2e7d3";
+  //      column[5].color = "#fff595";
+  //      column[6].color = "#333333";
+  //      column[7].color = "#6082b6";
+  //     // }
+  //   });
+  // });
+  
 
   // Alright! Now that we've figured out the gameBoard is an array of arrays, and that each square is just an object with some useful properties on it, let's start using our functional programming tools to make some changes to the board. 
-  // Use each to iterate through the first row of the gameBoard (the array at position 0 in the gameBoard array). 
-    // console.log each item that's passed into our callback. 
-    // What is it that's being passed into each invocation of our callback? Can we name this parameter something obvious that makes it clear what it represents?
-    // Let's change every square to a different color of your choosing. 
+  // Use each to iterate through the first row of the gameBoard (the array at position 0 in the gameBoard array).   // What is it that's being passed into each invocation of our callback? Can we name this parameter something obvious that makes it clear what it represents?
+
+  
+_.each(gameBoard[0], function(square) {
+  console.log(square);
+});
+
+  
+    // Let's change every square to a different color of your choosing.
+_.each(gameBoard, function(row) {
+  _.each(row, function(square) {
+    square.color = "#777222";
+  });
+});
 
       // If you're not familiar with colors in JS, you can do this in three main ways: through rgb values, hex values (the way we've done it right now), or just typing in a color name like 'orange'.
         // Random aside: hex values are really useful if you're trying to create random colors :)
     // Now let's do the same thing using map on the second row of our gameBoard.
-      // First, create an array of 8 color strings. Mine would be ['orange','purple','orange','purple','orange','purple','orange','purple']
+
+  // First, create an array of 8 color strings. Mine would be ['orange','purple','orange','purple','orange','purple','orange','purple']
       // What's the key difference between map and each? map returns an array, whereas each only has side effects, and does not return anything. 
       // Think through how we'd use each and map in different ways to accomplish the same goal. 
       // The key part here is how to leverage the fact that map returns an array of values to you. So what we're going to do in the end is overwrite the second row of the gameBoard with the mutated array map returns to us. 
       // Let's pseudocode!
         // map through an array of colors
+var colorArray = ['teal', 'red', 'black', 'purple', 'white', 'green', 'orange', 'white'];
+  var changeColor = _.map(gameBoard[1], function(piece, index) {
+      return piece.color = colorArray[index];
+  });
+
         // remember that the callback function has to do three three things:
           // 1. Take in an item.
           // 2. Do something to change that item into what we want to see in the output array.
@@ -56,7 +104,7 @@
         // On each iteration of map
           // Take in a color
           // Change that color into a squareObj
-            // Recall that each squareObj on our board looks like this: 
+           // Recall that each squareObj on our board looks like this: 
               // var square = {
               //     position: [row, column],
               //     color: colorToBeDisplayed,
@@ -67,18 +115,49 @@
           // Set the second row of our gameBoard equal to what map returns to us. 
           // Remember, the key difference between map and each is that each purely has side effects, while map is designed to return a new array that is the same length as the old array. In order to use map properly, we must put this returned array to use. 
 
+  var changeColor = _.map(gameBoard, function(color, squareObj) {
+          color = squareObj;
+          return changeColor;
+  });
+
+
+           
+
     // Now that we've figured out how to use map and each to change the colors in a row, let's nest them inside of another each to change all of the rows!
       // Let's warm up to this by doing it the way we would have before we knew how to program functionally: using nested for loops. 
         // Use an outer for loop to iterate through the entire gameBoard.
-          // Each iteration will access one of the rows in the gameBoard. 
+         // Each iteration will access one of the rows in the gameBoard. 
         // Use an inner for loop to iterate through a row. 
           // Each iteration will access one of the squareObjs in that row. 
           // While iterating through each object, change it's color property to 'orange' (or any other color of your choosing).
+        for (var i = 0; i < gameBoard.length; i++) {
+          var row = gameBoard[i];
+          for (var j = 0; j < row.length; j++) {
+            var squareObjs = row[j];
+            squareObjs.color = 'orange';
+          }
+        }
+         
 
       // Great! Now that we've changed the color of each square to orange using for loops, let's transition this over to functional programming.
         // First, replace the inner for loop with an each statement that changes the color of each square to blue. Be sure to write a new each statement for this- don't just copy and paste the one you've written up above. We want you to get as much practice typing these out as possible!
+        _.each(gameBoard, function(row) {
+          _.each(row, function(square, index) {
+              square.color = 'blue';
+          });
+        });
+
 
         // Now that all the squares are changed to blue, let's replace the outer for loop with an each statement. Again, write a whole new one from scratch here. 
+        _.each(gameBoard, function(row) {
+            console.log(row);
+          _.each(row, function(square, index) {
+            console.log(square);
+            console.log(square.color);
+              square.color = 'green';
+          });
+
+        });
           // Change the color in the inner each statement to green, just to make sure everything's working. 
           // Remember, when in doubt, console.log the item you're working with to make sure you understand what it is at each step! 
             // This is a really useful pattern to get used to. As you work with more and more complex codebases at various jobs, you won't be able to just look at the code and know exactly what you're working with; you'll have to log the results to see what the variables represent. 
@@ -87,6 +166,47 @@
       // Awesome! Hopefully at this point you've fully grasped that each is just another way of executing some code on each item in a collection. And that you can make that code do whatever you want it to. 
         // Let's replace our inner each loop with map, changing the colors of all the squares to purple this time. 
         // Remember that to do this, you'll have to first create an array that is just filled with the word purple 8 times. 
+        _.each(gameBoard, function(row) {
+          _.map(row, function(square, index) {
+              square.color = 'purple';
+          });
+        });
+
+
+        var filter = function (collection, test) {
+          var results = [];
+          _.each(collection, function(element) {
+              if (test(element)) {
+                results.push(element);
+              }
+          });
+          return results;
+        };
+
+        var items = [1, 2, 3, 4, 5];
+        // var results = filter( items, function(element){
+        //     return element % 2 === 0;
+        // });
+        var isEven = function(num) {
+          return num % 2 === 0;
+        }
+        var results = filter(items, isEven);
+
+        console.log(results); 
+
+
+
+
+
+
+
+        // var notFilter = _.map([1, 2, 3, 4, 5], function(element) {
+        //   if(element % 2 === 0) {
+        //     return element;
+        //   }
+        // });
+
+        // console.log(notFilter);
 
   // One of the things you'll need to be great at as an engineer is debugging. Debugging is nothing more than problem solving, or having fun with a puzzle. 
   // As you work through this project, you will get stuck on things. That's totally normal and expected! Getting your code to work when it isn't is called debugging. When you get stuck, follow the debugging pattern we outline below. 
@@ -98,20 +218,42 @@
 
   // Now that we have a decent understanding of the gameBoard. Now let's test out the makePiece function. 
     // Let's add a new piece (name it anything you want. babyDino is my current favorite, but I'm sure you'll have fun coming up with your own favorite gamePieces!). Try invoking makePiece with the right arguments and make sure it worked by opening up your browser. Uncomment the following lines to make this work. 
-    // makePiece(gameBoard, [3,5], 'babyDino');
-    // gameBoard[3][5].gamePiece.imageURL = "http://cs307103.vk.me/v307103801/4aad/kGuRYIMoJnw.jpg";
+
+    makePiece(gameBoard, [3,5], 'babyDino');
+    gameBoard[3][5].gamePiece.imageURL = "http://cs307103.vk.me/v307103801/4aad/kGuRYIMoJnw.jpg";
 
     // If you're wondering where this makePiece function came from, it was defined in the helperFunctions.js file and it was declared in the global scope, so it's accessible anywhere in our JavaScript code.
 
     // Now that we've added a piece to the board, let's use that piece to practice filter. If you're not familiar with filter, look it up in the underscorejs docs! 
     // Invoke _.filter on the row that you just added the gamePiece to. See if you can use it to return an array of only the square(s) that have a gamePiece on them. Do you remember the property name where we're storing gamePiece on each squareObj? 
 
+   var result = _.filter(gameBoard[3], function(square) {
+        if (square.gamePiece !== "") {
+          return square;
+        }
+    })
+
+    console.log(result);
+
     // Now try adding gamePieces to a couple of different rows throughout the board using this makePiece funcion. 
+    var pawn = 'pawn';
+    makePiece(gameBoard, [2, 4], pawn);
+    gameBoard[2][4].gamePiece.imageURL = "http://vectorlib.free.fr/BomberMan/jpg/bomberman.jpg"
 
     // Go ahead and find all the pieces on the whole board, organized by row.
     // The output should be an array that is filled with nested arrays, one for each row. Each object in those nested row arrays should be a square that has a gamePiece on it. 
+
+    _.each(gameBoard, function(row, row_index) {
+      _.each(row, function(square, square_index) {
+        makePiece(gameBoard, [row[row_index], square[square_index]], 'pawn');
+        gameBoard[row][row_index][square][square_index].gamePiece.imageURL = "http://vectorlib.free.fr/BomberMan/jpg/bomberman.jpg"
+      });
+    });
       // example output: "results after filter: [Array[0], Array[0], Array[0], Array[3], Array[0], Array[2], Array[0], Array[0]]" for a gameBoard that has three gamePieces on row 3 and two gamePieces on row 5. 
-    // Think about whether you might want to use each or map. Discuss with your pair why you might want to choose one over the other. 
+
+
+
+    // Think about whether you might want to us]e each or map. Discuss with your pair why you might want to choose one over the other. 
       // Hint: Remember that each can't return anything, but it can have side effects (that is, modify variables it has scope access to). On the other hand, map DOES return something... what does it return?
       // Bonus: Write two implementations! One using each and one using map. Be sure to label the output "results after filter using each" & "results after filter using map"
 
