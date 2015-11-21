@@ -2,7 +2,7 @@
   // Let's return to our gameBoard now. Step back up to just before we started the reduce mini-sprint to remind yourself what we were doing. 
 
   // First, note that in this file we still have access to our gameBoard object. This is because in boardBasics.js we put it on the window object. You can test this by trying to print the gameBoard variable to the console:
-  // console.log('gameBoard object in gamePieces.js is:', gameBoard);
+  console.log('gameBoard object in gamePieces.js is:', gameBoard);
 
   // Remember that we'd just used each and filter to find all the gamePieces on the board: "results after filter: [Array[0], Array[0], Array[0], Array[3], Array[0], Array[2], Array[0], Array[0]]" for a gameBoard that has three gamePieces on row 3 and two game pieces on row 5.
   // Having that information scattered throughout a bunch of different arrays seems messy. You can probably think of plenty of cases where we'd want to have all that information collected into a single array. 

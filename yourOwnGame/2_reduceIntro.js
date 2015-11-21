@@ -70,6 +70,16 @@
     }, 10);
 
     console.log(multiplyTen);
+
+    var inputArray = ['apple', 'banana', 'pineapple'];
+    var glueString = function(element, elementToGlue) {
+      return element + (element.length?", ":"") + elementToGlue;
+    };
+
+    var result = _.reduce(inputArray, glueString, "");
+
+    console.log(result);
+
       // What do you expect to happen?
       // Hint: think through what happens on the first iteration through reduce. 
         // Let's step through it: 10 will be passed in as the value for accumulated, and 6 will be passed in as the value for current. We'll multiply them together, and return the result, 60. 
@@ -79,6 +89,17 @@
   // Let's write out code that reduces the codingPoints object down to just an array of values that are larger than 1000. So we'd expect to get the following: [1200, 8000000]
     // HINT: you can pass in anything you want as a starting value, even an empty array.
 
+    var filterThousand = _.reduce(codingPoints, function(memory, num) {
+      if (num > 1000) {
+        memory.push(num);
+      }
+        return memory;
+    }, []);
+
+    console.log(filterThousand);
+
+
+
   // Now let's think through how we could use reduce to turn an array of nested arrays into a single array. 
     var nestedArrs = [[1,2,3],[4],[5,6,7,8],[9,10]];
     // We can use reduce to simplify that down to a single value of [1,2,3,4,5,6,7,8,9,10].
@@ -86,6 +107,13 @@
     // Write out the code to take each value from a nested array and push it into an accumulated array. 
       // When in doubt, pseudocode!
     // Make sure you're using reduce for this!
+
+    var oneArray = _.reduce(nestedArrs, function(memory, array) {
+      return memory.concat(array);
+    }, []);
+
+    console.log(oneArray);
+
 
   // Another interesting use of reduce is with booleans. 
     var friends = {
@@ -97,15 +125,28 @@
       // Let's think about this for a moment. On each iteration, we want to check two things: 
         // 1. Whether we're friends with the current person (current value)
         // 2. AND whether we're friends with everyone who came before (accumulated value)
-      _.reduce(friends, function(accumulated, current) {
+     var friendsWithEveryone = _.reduce(friends, function(accumulated, current) {
         // This will return true ONLY IF both the current value is true, and the result of all accumulated iterations is true too. This will return false if either the current or the accumulated is false. 
         return accumulated && current; 
       }, true); //start with true. What happens if we start with false? 
     // Now let's put this to use another way. 
-      var bouncersNightmare= {ashley: 22, bobby:23, camila:25, gabriela:22, ben:21, miranda:24, jayden:22, sofia:23, matias:21, hannah:21, makayla:23, justin:22, isaiah:25, caleb:22, chloe:24};
+
+    console.log(friendsWithEveryone);
+
+
+      var bouncersNightmare= {ashley: 22, bobby:23, camila:25, gabriela:22, ben:21, miranda:24, jayden:19, sofia:23, matias:21, hannah:21, makayla:23, justin:22, isaiah:25, caleb:22, chloe:24};
       // Let's make this poor bouncer's job a bit easier by reducing this collection down to a single true or false value of whether everyone in this group is at least 21 or not. 
         // Use reduce to turn bouncersNightmare into a single boolean value certifying whether everyone in the collection is at least 21. 
         // Test it out by switching one of the ages to be less than 21. Does your function return false now? 
+
+      var ageCertify = _.reduce(bouncersNightmare, function(memory, ages) {
+          if (memory && ages >= 21) {
+            return true;
+          }
+           return memory && ages;
+      });  
+
+      console.log(ageCertify);
   // Awesome job! You've now covered several different uses of reduce. There's a bit of a running joke amongst programmers that any problem can be solved using reduce. With these tools in your belt, you're going to be well-suited to do just that! 
   
   // CARRY ON...

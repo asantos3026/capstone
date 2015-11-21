@@ -282,6 +282,14 @@ var colorArray = ['teal', 'red', 'black', 'purple', 'white', 'green', 'orange', 
     });
 
     console.log(resultsWithEach);
+
+    var inputArray = ['apple', 'banana', 'pineapple'];
+    var result = _.reduce(inputArray, function(memory, element){
+      return memory + (memory.length?", ":"") + element;
+    }, "");
+
+    console.log(result);
+
       // Hint: Remember that each can't return anything, but it can have side effects (that is, modify variables it has scope access to). On the other hand, map DOES return something... what does it return?
       // Bonus: Write two implementations! One using each and one using map. Be sure to label the output "results after filter using each" & "results after filter using map"
 
