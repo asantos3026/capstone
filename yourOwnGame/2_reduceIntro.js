@@ -14,6 +14,8 @@
   var sum = _.reduce(testArr, function(accumulated, current) {
     return accumulated + current;
   });
+
+  console.log(sum);
   // console.log('the sum returned from reduce is:',sum);
   // Let's break this down for a moment. 
   // We're creating a variable sum, and setting it equal to the result of invoking reduce with some arguments. 
@@ -24,6 +26,13 @@
       // This result is then passed in as accumulated to our next invocation of the callback. 
       // At the end, reduce returns the accumulated value for us. 
   // Write out your own invocation of reduce that gives you the results of multiplying all the values in testArr together. 
+  var testArr = [6,7,8,9,10];
+  var multiply = _.reduce(testArr, function(accumulated, current) {
+    return accumulated * current;
+  });
+
+  console.log(multiply);
+
   // Reduce also works on the values stored in an object. 
   var codingPoints = {
     coderByte: 1200,
@@ -32,15 +41,35 @@
     telegraphPrep: 8000000
   };
   // Let's use reduce to add together all the values in our codingPoints object. 
+
+  var sum = _.reduce(codingPoints, function(accumulated, current) {
+    return accumulated + current;
+  });
+
+  console.log(sum);
   // reduce also takes an optional starting value that we haven't been giving it yet. 
     // What is this starting value used for? It's the value that is passed in as "accumulated" on the first iteration. 
     // Let's say that you already came in with 10 codingPoints before starting on coderByte or codeCademy. We can pass that in as the starting value to reduce. All you need to do is put it after a comma after the callback function, like so: 
     var pointTotal = _.reduce(codingPoints, function(accumulated, current) {
-      //logic goes here
+      return accumulated + current;
     }, 10);
+
+    console.log(pointTotal);
     // Try writing a new invocation of reduce that gives yourself 50 starting codingPoints and then sums up the rest of the codingPoints. 
     // Remember that reduce returns a value. Feel free to store it in a variable if you like.
+    var pointTotal = _.reduce(codingPoints, function(accumulated, current) {
+      return accumulated + current;
+    }, 50);
+
+    console.log(pointTotal);
+
     // Now try writing another invocation of reduce that multiplies the values in testArr together, but starts with the value of 10. 
+
+    var multiplyTen = _.reduce(testArr, function(accumulated, current) {
+      return accumulated * current;
+    }, 10);
+
+    console.log(multiplyTen);
       // What do you expect to happen?
       // Hint: think through what happens on the first iteration through reduce. 
         // Let's step through it: 10 will be passed in as the value for accumulated, and 6 will be passed in as the value for current. We'll multiply them together, and return the result, 60. 
