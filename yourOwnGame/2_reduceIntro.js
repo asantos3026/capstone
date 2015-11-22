@@ -139,11 +139,11 @@
         // Use reduce to turn bouncersNightmare into a single boolean value certifying whether everyone in the collection is at least 21. 
         // Test it out by switching one of the ages to be less than 21. Does your function return false now? 
 
-      var ageCertify = _.reduce(bouncersNightmare, function(memory, ages) {
-          if (memory && ages >= 21) {
+      var ageCertify = _.reduce(bouncersNightmare, function(memory, age) {
+          if (memory && age >= 21) {
             return true;
           }
-           return memory && ages;
+           return memory && age;
       });  
 
       console.log(ageCertify);

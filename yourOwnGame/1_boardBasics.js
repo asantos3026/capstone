@@ -258,14 +258,13 @@ var colorArray = ['teal', 'red', 'black', 'purple', 'white', 'green', 'orange', 
     // Go ahead and find all the pieces on the whole board, organized by row.
     // The output should be an array that is filled with nested arrays, one for each row. Each object in those nested row arrays should be a square that has a gamePiece on it. 
 
-    var results = _.filter(gameBoard, function(row, index) {
-       if (row[index].gamePiece !== "") {
-          return row[index];
-        }
-    })
+    var results = _.map(gameBoard, function(row) {
+      return _.filter(row, function(cell) {
+        return cell.gamePiece !== '';
+      });
+    });
 
     console.log(results);
-
 
       // example output: "results after filter: [Array[0], Array[0], Array[0], Array[3], Array[0], Array[2], Array[0], Array[0]]" for a gameBoard that has three gamePieces on row 3 and two gamePieces on row 5. 
 

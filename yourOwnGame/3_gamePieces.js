@@ -10,18 +10,28 @@
       // Can you think of a way we could reduce an array filled with arrays to a single array just filled with all the values contained in each subarray? 
       // Hint: what if we tried passing in an empty array as the starting value?
 
+      var singleRow = _.reduce(gameBoard, function(memory, row) {
+        return memory.concat(row);
+      }, []);
+
+      console.log(singleRow);
+
   // This ends our intro to the capstone project. By this point you should be pretty familiar with the gameBoard, the makePiece function, and all four of the main functional programming tools (each, map, filter, and reduce). From here on out, we're intentionally going to give you less guidance. One of the key skills to be a successful engineer is autonomy in accomplishing tasks that are given to you. We want you to get used to that feeling with these upcoming exercises. 
 
 
   // 1. Create an array called piecesToAdd that holds the names of each of the pieces we'll create for each player. For example: ['kuddlyKoala', 'babyDino','babyDino', 'babyDino', 'fierceDragon', 'lazyPanda', 'lazyPanda']
+  var piecesToAdd = ['pawn', 'rook', 'queen', 'king', 'bishop', 'horse'];
 
   // 2. Create an array of the playerNames. For example: ['hermoineGranger', 'graceHopper']
+  var playerNames = [superMario, superLuigi]
 
   // 3. Now use two (nested) each loops to add these pieces to the board. Remember that we have the makePiece function! 
     // Question1: How can you make sure each piece ends up on a different square on the board? 
     // Question2: What happens when you get to the end of a line? How do you know to start on the first position of the next line? Think if you can use the modulus "%" operator for this. If you're not familiar with the modulus operator, it gives you the remainder from dividing two numbers. So if we divide 12 by 8, that gives us a remainder of 4 (we have 4 left over after taking 8 out of 12). As always, feel free to google around for more information!
     // Question3: How can we line these pieces up on opposite sides of the board?
     // BEST PRACTICE: Pseudocode the specific steps you'll need to accomplish. This takes a seemingly large and complex task and breaks it down into solvable chunks. 
+  _.each()
+
 
   // 4. Great! Now we have two fierce opposing armies (or two groups of friends just trying to gather together on the same square for a group hug?!) arranged on the board. It's time to make them look intimidating or pretty for their impending battle or hugfest. 
     // Let's use a couple of our functional programming skills here. We'll chain them together, slowly building up to do some fairly complex operations. 
